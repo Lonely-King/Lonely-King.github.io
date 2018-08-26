@@ -79,14 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index-1.html">
+<meta name="description" content="$(function(){ 	 	var $li = $(&apos;.slide_pics li&apos;); 	var len = $li.length; 	var $prev = $(&apos;.prev&apos;); 	var $next = $(&apos;.next&apos;);   	//将要运动过来的li 	var nowli = 0;  	//当前要离开的li 	var prevli = 0;  	var timer = null">
+<meta property="og:type" content="article">
+<meta property="og:title" content="槐兄">
+<meta property="og:url" content="http://yoursite.com/2018/08/26/web/tiantian/js/slide/index.html">
 <meta property="og:site_name" content="槐兄">
+<meta property="og:description" content="$(function(){ 	 	var $li = $(&apos;.slide_pics li&apos;); 	var len = $li.length; 	var $prev = $(&apos;.prev&apos;); 	var $next = $(&apos;.next&apos;);   	//将要运动过来的li 	var nowli = 0;  	//当前要离开的li 	var prevli = 0;  	var timer = null">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-26T04:36:38.529Z">
+<meta property="og:updated_time" content="2016-12-10T03:32:17.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="槐兄">
+<meta name="twitter:description" content="$(function(){ 	 	var $li = $(&apos;.slide_pics li&apos;); 	var len = $li.length; 	var $prev = $(&apos;.prev&apos;); 	var $next = $(&apos;.next&apos;);   	//将要运动过来的li 	var nowli = 0;  	//当前要离开的li 	var prevli = 0;  	var timer = null">
 
 
 
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/index-1.html"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/26/web/tiantian/js/slide/"/>
 
 
 
 
 
-  <title>about | 槐兄</title>
+  <title> | 槐兄</title>
   
 
 
@@ -286,33 +289,258 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/26/web/tiantian/js/slide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="槐兄">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-26T20:44:49+08:00">
+                2018-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        $(function(){
+	
+	var $li = $('.slide_pics li');
+	var len = $li.length;
+	var $prev = $('.prev');
+	var $next = $('.next');
+
+
+	//将要运动过来的li
+	var nowli = 0;
+
+	//当前要离开的li
+	var prevli = 0;
+
+	var timer = null;
+
+
+
+	$li.not(':first').css({left:760});
+
+	$li.each(function(index){
+
+		var $sli = $('<li>');
+
+		if(index==0)
+		{
+			$sli.addClass('active');
+		}
+
+		$sli.appendTo('.points')
+
+	})
+
+	$points = $('.points li');
+
+
+	$points.click(function(){
+		nowli = $(this).index();
+
+		if(nowli==prevli){
+			return;
+		}
+
+		move();
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+
+
+	$prev.click(function(){
+		nowli--;
+		move();
+		$points.eq(nowli).addClass('active').siblings().removeClass('active');	
+
+	})
+
+	$next.click(function(){
+		nowli++;
+		move();
+		$points.eq(nowli).addClass('active').siblings().removeClass('active');	
+
+	})
+
+	$('.slide').mouseenter(function() {
+		clearInterval(timer);
+	});
+
+	$('.slide').mouseleave(function() {
+		timer = setInterval(autoplay,4000);
+	});
+
+
+
+	timer = setInterval(autoplay,4000);
+
+	function autoplay(){
+		nowli++;
+		move();
+		$points.eq(nowli).addClass('active').siblings().removeClass('active');
+	}
+
+
+	function move(){
+
+		if(nowli<0) {="" nowli="len-1;" prevli="0;" $li.eq(nowli).css({left:-760});="" $li.eq(prevli).stop().animate({left:760});="" $li.eq(nowli).stop().animate({left:0});="" return;="" }="" if(nowli="">len-1)
+		{
+			nowli = 0;
+			prevli = len-1;
+			$li.eq(nowli).css({left:760});
+			$li.eq(prevli).stop().animate({left:-760});
+			$li.eq(nowli).stop().animate({left:0});
+			prevli=nowli;
+			return;
+		}
+
+
+
+		if(nowli>prevli){
+
+			$li.eq(nowli).css({left:760});
+			$li.eq(prevli).stop().animate({left:-760});			
+		}
+		else
+		{
+			$li.eq(nowli).css({left:-760});
+			$li.eq(prevli).stop().animate({left:760});
+					
+		}
+
+		$li.eq(nowli).stop().animate({left:0});
+		prevli=nowli;	
+
+
+
+	}
+
+
+
+
+
+
+
+})</0)></li>
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/26/web/tiantian/js/register/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 

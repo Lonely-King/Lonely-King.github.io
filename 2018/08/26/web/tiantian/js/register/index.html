@@ -79,14 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index-1.html">
+<meta name="description" content="$(function(){  	var error_name = false; 	var error_password = false; 	var error_check_password = false; 	var error_email = false; 	var error_check = false;   	$(&apos;#user_name&apos;).blur(function() { 		check">
+<meta property="og:type" content="article">
+<meta property="og:title" content="槐兄">
+<meta property="og:url" content="http://yoursite.com/2018/08/26/web/tiantian/js/register/index.html">
 <meta property="og:site_name" content="槐兄">
+<meta property="og:description" content="$(function(){  	var error_name = false; 	var error_password = false; 	var error_check_password = false; 	var error_email = false; 	var error_check = false;   	$(&apos;#user_name&apos;).blur(function() { 		check">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-26T04:36:38.529Z">
+<meta property="og:updated_time" content="2016-12-10T10:04:35.486Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="槐兄">
+<meta name="twitter:description" content="$(function(){  	var error_name = false; 	var error_password = false; 	var error_check_password = false; 	var error_email = false; 	var error_check = false;   	$(&apos;#user_name&apos;).blur(function() { 		check">
 
 
 
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/index-1.html"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/26/web/tiantian/js/register/"/>
 
 
 
 
 
-  <title>about | 槐兄</title>
+  <title> | 槐兄</title>
   
 
 
@@ -286,33 +289,319 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/26/web/tiantian/js/register/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="槐兄">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-26T20:44:49+08:00">
+                2018-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        $(function(){
+
+	var error_name = false;
+	var error_password = false;
+	var error_check_password = false;
+	var error_email = false;
+	var error_check = false;
+
+
+	$('#user_name').blur(function() {
+		check_user_name();
+	});
+
+	$('#user_name').focus(function() {
+		$(this).next().hide();
+	});
+
+
+	$('#pwd').blur(function() {
+		check_pwd();
+	});
+
+	$('#pwd').focus(function() {
+		$(this).next().hide();
+	});
+
+	$('#cpwd').blur(function() {
+		check_cpwd();
+	});
+
+	$('#cpwd').focus(function() {
+		$(this).next().hide();
+	});
+
+	$('#email').blur(function() {
+		check_email();
+	});
+
+	$('#email').focus(function() {
+		$(this).next().hide();
+	});
+
+	$('#allow').click(function() {
+		if($(this).is(':checked'))
+		{
+			error_check = false;
+			$(this).siblings('span').hide();
+		}
+		else
+		{
+			error_check = true;
+			$(this).siblings('span').html('请勾选同意');
+			$(this).siblings('span').show();
+		}
+	});
+
+
+	function check_user_name(){
+		//数字字母或下划线
+		var reg = /^[a-zA-Z0-9_]{5,15}$/;
+		var val = $('#user_name').val();
+
+		if(val==''){
+			$('#user_name').next().html('用户名不能为空！')
+			$('#user_name').next().show();
+			error_name = true;
+			return;
+		}
+
+		if(reg.test(val))
+		{
+			$('#user_name').next().hide();
+			error_name = false;
+		}
+		else
+		{
+			$('#user_name').next().html('用户名是5到15个英文或数字，还可包含“_”')
+			$('#user_name').next().show();
+			error_name = true;
+		}
+
+	}
+
+
+	function check_pwd(){
+		var reg = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/;
+		var val = $('#pwd').val();
+
+		if(val==''){
+			$('#pwd').next().html('密码不能为空！')
+			$('#pwd').next().show();
+			error_password = true;
+			return;
+		}
+
+		if(reg.test(val))
+		{
+			$('#pwd').next().hide();
+			error_password = false;
+		}
+		else
+		{
+			$('#pwd').next().html('密码是6到15位字母、数字，还可包含@!#$%^&*.~字符')
+			$('#pwd').next().show();
+			error_password = true;
+		}		
+	}
+
+
+	function check_cpwd(){
+		var pass = $('#pwd').val();
+		var cpass = $('#cpwd').val();
+
+		if(pass!=cpass)
+		{
+			$('#cpwd').next().html('两次输入的密码不一致')
+			$('#cpwd').next().show();
+			error_check_password = true;
+		}
+		else
+		{
+			$('#cpwd').next().hide();
+			error_check_password = false;
+		}		
+		
+	}
+
+	function check_email(){
+		var re = /^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$/;
+		var val = $('#email').val();
+
+		if(val==''){
+			$('#email').next().html('邮箱不能为空！')
+			$('#email').next().show();
+			error_email = true;
+			return;
+		}
+
+		if(re.test(val))
+		{
+			$('#email').next().hide();
+			error_email = false;
+		}
+		else
+		{
+			$('#email').next().html('你输入的邮箱格式不正确')
+			$('#email').next().show();
+			error_email = true;
+		}
+
+	}
+
+
+	$('.reg_form').submit(function() {
+
+		check_user_name();
+		check_pwd();
+		check_cpwd();
+		check_email();
+
+		if(error_name == false && error_password == false && error_check_password == false && error_email == false && error_check == false)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	});
+
+
+
+
+
+
+
+
+})
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/26/web/tiantian/js/jquery.cookie/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/26/web/tiantian/js/slide/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
